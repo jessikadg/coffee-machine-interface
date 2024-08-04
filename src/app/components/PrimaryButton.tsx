@@ -36,7 +36,6 @@ interface PrimaryButtonProps {
     | "Americano"
     | "Cappuccino"
     | "Latte Machiato";
-  imageUrl?: string;
   imageAlt?: string;
   expandPanelOptions?: string[];
   onClick?: () => void;
@@ -44,20 +43,16 @@ interface PrimaryButtonProps {
 
 export const PrimaryButton = ({
   coffeeName,
-  imageUrl,
   imageAlt,
   expandPanelOptions,
   onClick,
 }: PrimaryButtonProps) => {
+  const imageUrl = `./assets/${coffeeName.toLowerCase()}.svg`;
+
   return (
     <PrimaryButtonStyled>
       <ImageRoundWrapper>
-        <Image
-          src={"/assets/lungo.svg"}
-          alt={imageAlt || ""}
-          width={30}
-          height={70}
-        />
+        <Image src={imageUrl} alt={imageAlt || ""} width={28} height={65} />
       </ImageRoundWrapper>
 
       {coffeeName}
