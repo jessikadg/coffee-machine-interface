@@ -1,4 +1,5 @@
 "use client";
+import { useSelector } from "react-redux";
 import { PageLayout } from "./components/PageLayout";
 import { PrimaryButton } from "./components/PrimaryButton";
 import { useGetCoffeeStyleOptions } from "./hooks/useGetCoffeeOptions";
@@ -6,7 +7,11 @@ import { useGetCoffeeStyleOptions } from "./hooks/useGetCoffeeOptions";
 export default function Home() {
   const { coffeeOptions } = useGetCoffeeStyleOptions();
 
-  console.log(coffeeOptions);
+  const coffeeOptionsReduxState = useSelector(
+    (state: { optionsData: { value: Object } }) => state.optionsData.value
+  );
+
+  console.log("redux data", coffeeOptionsReduxState);
 
   return (
     <main>

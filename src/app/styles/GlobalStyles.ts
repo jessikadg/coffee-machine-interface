@@ -1,13 +1,8 @@
+// Here we can insert styling that should be applied globally to the application.
+// This is particularly useful when overriding library components, when setting up dark/light themes and other scenarios.
 import { createGlobalStyle, css } from "styled-components";
-import { Lato } from "next/font/google";
 
-const lato = Lato({ weight: ["300"], subsets: ["latin"] });
-
-const styles = css`
-  button {
-    /* font-family: ${lato.style.fontFamily}; */
-  }
-`;
+const styles = css``;
 
 const GlobalStyles = createGlobalStyle`
   ${styles}

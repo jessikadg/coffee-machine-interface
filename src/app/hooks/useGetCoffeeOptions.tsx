@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { CoffeeOptionsDataType } from "../types/data";
 import getCoffeeOptions from "@/api/dataFetch";
 import { CoffeeOptionsType } from "../types/coffeeOptions";
+import { useDispatch } from "react-redux";
+import { update } from "../lib/features/data";
 
 const organizeData = (data: CoffeeOptionsDataType) => {
   return data.types.map((type) => ({
@@ -28,6 +30,8 @@ const organizeData = (data: CoffeeOptionsDataType) => {
 };
 
 export const useGetCoffeeStyleOptions = () => {
+  const coffeeOptionsDispatch = useDispatch();
+
   const [coffeeOptions, setCoffeeOptions] = useState<CoffeeOptionsType | null>(
     null
   );
@@ -37,10 +41,10 @@ export const useGetCoffeeStyleOptions = () => {
     const fetchCoffeeOptions = async () => {
       const response = await getCoffeeOptions();
 
-      //organize the data into a more readable format:
       const organisedData = organizeData(response);
 
       setCoffeeOptions(organisedData);
+      coffeeOptionsDispatch(update(organisedData));
     };
 
     fetchCoffeeOptions();
