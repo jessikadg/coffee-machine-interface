@@ -1,6 +1,8 @@
 "use client";
+import { get } from "http";
 import Image from "next/image";
 import styled from "styled-components";
+import { getImageHeight, getImageSize } from "../lib/utils/getImageSizes";
 
 const PrimaryButtonStyled = styled.button`
   display: flex;
@@ -14,6 +16,7 @@ const PrimaryButtonStyled = styled.button`
   border: none;
   border-radius: 4px;
   margin-bottom: 8px;
+  cursor: pointer;
 `;
 
 const ImageRoundWrapper = styled.div`
@@ -26,16 +29,11 @@ const ImageRoundWrapper = styled.div`
 `;
 
 interface PrimaryButtonProps {
-  coffeeName:
-    | "Lungo"
-    | "Espresso"
-    | "Ristretto"
-    | "Americano"
-    | "Cappuccino"
-    | "Latte Machiato"
-    | string;
+  coffeeName?: string;
   imageAlt?: string;
   expandPanelOptions?: string[];
+  size?: string;
+  children: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -43,23 +41,27 @@ export const PrimaryButton = ({
   coffeeName,
   imageAlt,
   expandPanelOptions,
+  children,
+  size,
   onClick,
 }: PrimaryButtonProps) => {
-  const imageUrl = `./assets/${coffeeName.toLowerCase()}.svg`;
   const imageUrlFallback = `./assets/espresso.svg`;
+  const imageUrl = coffeeName
+    ? `./assets/${coffeeName.toLowerCase()}.svg`
+    : imageUrlFallback;
 
   return (
-    <PrimaryButtonStyled>
+    <PrimaryButtonStyled onClick={onClick}>
       <ImageRoundWrapper>
         <Image
           src={imageUrl || imageUrlFallback}
           alt={imageAlt || ""}
-          width={28}
-          height={65}
+          width={getImageSize(size)}
+          height={getImageHeight(size)}
         />
       </ImageRoundWrapper>
 
-      {coffeeName}
+      {children}
     </PrimaryButtonStyled>
   );
 };

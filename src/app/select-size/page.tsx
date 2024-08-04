@@ -1,3 +1,4 @@
+"use client";
 import { useGetCoffeeOptionsQuery } from "@/api/coffeeApi";
 import { useSelector } from "react-redux";
 import { PageLayout } from "../components/PageLayout";
@@ -12,22 +13,30 @@ export default function SelectSizePage() {
 
   console.log({ userOrder });
 
+  const selectedCoffee =
+    coffeeOptions &&
+    coffeeOptions.filter(
+      (coffeeOption) => coffeeOption.name === userOrder.coffeeStyle
+    )[0];
+
+  console.log({ selectedCoffee });
   return (
     <PageLayout
       pageTitle="Select your size"
       backButtonText="Brew with Lex"
       isInitialPage
     >
-      {coffeeOptions ? (
-        coffeeOptions.map((coffeeOption) => (
+      {selectedCoffee ? (
+        selectedCoffee.sizes.map((size) => (
           <PrimaryButton
-            key={coffeeOption._id}
-            coffeeName={coffeeOption.name}
-          />
+            coffeeName={selectedCoffee.name}
+            key={`${selectedCoffee}-${size}`}
+            size={size.name}
+          >
+            {size.name}
+          </PrimaryButton>
         ))
       ) : (
-        // Improvements: proper loading should be handled by useGetCoffeeOptions hook which could return
-        // not only the data but also a loading state. Setting here as paragraph for the sake of time.
         <p>Loading...</p>
       )}
     </PageLayout>
