@@ -1,12 +1,12 @@
 "use client";
 import { PageLayout } from "./components/PageLayout";
 import { PrimaryButton } from "./components/PrimaryButton";
-import { useGetCoffeeOptions } from "./hooks/useGetCoffeeOptions";
+import { useGetCoffeeStyleOptions } from "./hooks/useGetCoffeeOptions";
 
 export default function Home() {
-  const coffeeOptions = useGetCoffeeOptions();
+  const { coffeeOptions } = useGetCoffeeStyleOptions();
 
-  console.log({ coffeeOptions });
+  console.log(coffeeOptions);
 
   return (
     <main>
@@ -15,7 +15,18 @@ export default function Home() {
         backButtonText="Brew with Lex"
         isInitialPage
       >
-        <PrimaryButton coffeeName="Lungo" />
+        {coffeeOptions ? (
+          coffeeOptions.map((coffeeOption) => (
+            <PrimaryButton
+              key={coffeeOption._id}
+              coffeeName={coffeeOption.name}
+            />
+          ))
+        ) : (
+          // Improvements: proper loading should be handled by useGetCoffeeOptions hook which could return
+          // not only the data but also a loading state. Setting here as paragraph for the sake of time.
+          <p>Loading...</p>
+        )}
       </PageLayout>
     </main>
   );

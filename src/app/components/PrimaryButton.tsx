@@ -1,10 +1,6 @@
 "use client";
 import Image from "next/image";
 import styled from "styled-components";
-import lungo from "../assets/lungo.svg";
-import logo from "/next.svg";
-// import espresso from "../../assets/espresso.svg";
-// import cappuccino from "../../assets/cappuccino.svg";
 
 const PrimaryButtonStyled = styled.button`
   display: flex;
@@ -17,6 +13,7 @@ const PrimaryButtonStyled = styled.button`
   font-size: 14px;
   border: none;
   border-radius: 4px;
+  margin-bottom: 8px;
 `;
 
 const ImageRoundWrapper = styled.div`
@@ -35,7 +32,8 @@ interface PrimaryButtonProps {
     | "Ristretto"
     | "Americano"
     | "Cappuccino"
-    | "Latte Machiato";
+    | "Latte Machiato"
+    | string;
   imageAlt?: string;
   expandPanelOptions?: string[];
   onClick?: () => void;
@@ -48,11 +46,17 @@ export const PrimaryButton = ({
   onClick,
 }: PrimaryButtonProps) => {
   const imageUrl = `./assets/${coffeeName.toLowerCase()}.svg`;
+  const imageUrlFallback = `./assets/espresso.svg`;
 
   return (
     <PrimaryButtonStyled>
       <ImageRoundWrapper>
-        <Image src={imageUrl} alt={imageAlt || ""} width={28} height={65} />
+        <Image
+          src={imageUrl || imageUrlFallback}
+          alt={imageAlt || ""}
+          width={28}
+          height={65}
+        />
       </ImageRoundWrapper>
 
       {coffeeName}

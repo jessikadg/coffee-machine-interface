@@ -14,7 +14,7 @@ const PageLayoutWrapper = styled.div`
 const PageTitle = styled.h2`
   font: 24px;
   line-height: 32.78px;
-  letter-spacing: 0.37px;
+  letter-spacing: 0.87px;
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
