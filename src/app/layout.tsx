@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
-import { ClientApp } from "./clientApp";
+import { ClientApp } from "./ClientApp";
 
 const lato = Lato({ subsets: ["latin"], weight: ["300"] });
 
