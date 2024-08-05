@@ -31,12 +31,6 @@ export default function SelectExtrasPage() {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
 
-  const selectedCoffee =
-    coffeeOptions &&
-    coffeeOptions.filter(
-      (coffeeOption) => coffeeOption.name === userOrder.coffeeStyle
-    )[0];
-
   const extrasOnOrder = Object.keys(userOrder.extras).filter(
     (key) => userOrder.extras[key] !== null
   );
@@ -57,7 +51,7 @@ export default function SelectExtrasPage() {
           </PrimaryButton>
           {extrasOnOrder.map((extra: string) => (
             <PrimaryButton itemName={extra} key={`${extra}-button`}>
-              {userOrder.extras[extra] || extra + " - default"}
+              {extra + " - " + userOrder.extras[extra] || extra + " - default"}
             </PrimaryButton>
           ))}
 

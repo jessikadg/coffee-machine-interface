@@ -8,7 +8,9 @@ interface PageLayoutProps {
 }
 
 const PageLayoutWrapper = styled.div`
-  margin: 25px 5px;
+  max-width: 400px;
+  margin: 25px auto;
+  padding: 0 5px;
 `;
 
 const PageTitle = styled.h2`
