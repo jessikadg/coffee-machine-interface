@@ -28,7 +28,7 @@ export default function Home() {
             <Link href="/select-size" key={coffeeOption._id}>
               <PrimaryButton
                 key={coffeeOption._id}
-                coffeeName={coffeeOption.name}
+                itemName={coffeeOption.name}
                 onClick={() =>
                   coffeeStyleDispatch(setCoffeeStyle(coffeeOption.name))
                 }

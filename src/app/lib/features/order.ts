@@ -5,8 +5,8 @@ export const initialState: UserOrderState = {
   coffeeStyle: null,
   size: null,
   extras: {
-    sugar: null,
-    milk: null,
+    sugar: "Normal",
+    milk: "Cow",
   },
 };
 

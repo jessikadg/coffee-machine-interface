@@ -1,17 +1,20 @@
 "use client";
 import { useGetCoffeeOptionsQuery } from "@/api/coffeeApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PageLayout } from "../components/PageLayout";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { setSize } from "../lib/features/order";
+import Link from "next/link";
 
 export default function SelectSizePage() {
   const { data: coffeeOptions, error, isLoading } = useGetCoffeeOptionsQuery();
   const userOrder = useSelector((state: any) => state.userOrder);
+  const coffeeSizeDispatch = useDispatch();
+
+  // PLACEHOLDER - if selectedCoffee.name is "" or undefined, redirect to the previous page
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
-
-  console.log({ userOrder });
 
   const selectedCoffee =
     coffeeOptions &&
@@ -20,6 +23,7 @@ export default function SelectSizePage() {
     )[0];
 
   console.log({ selectedCoffee });
+  console.log({ userOrder });
   return (
     <PageLayout
       pageTitle="Select your size"
@@ -28,13 +32,19 @@ export default function SelectSizePage() {
     >
       {selectedCoffee ? (
         selectedCoffee.sizes.map((size) => (
-          <PrimaryButton
-            coffeeName={selectedCoffee.name}
-            key={`${selectedCoffee}-${size}`}
-            size={size.name}
+          <Link
+            href="/select-extras"
+            key={`${selectedCoffee.name}-${size.name}-link`}
           >
-            {size.name}
-          </PrimaryButton>
+            <PrimaryButton
+              itemName={selectedCoffee.name}
+              key={`${selectedCoffee.name}-${size.name}-button`}
+              size={size.name}
+              onClick={() => coffeeSizeDispatch(setSize(size.name))}
+            >
+              {size.name}
+            </PrimaryButton>
+          </Link>
         ))
       ) : (
         <p>Loading...</p>
