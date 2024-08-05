@@ -8,13 +8,10 @@ import Link from "next/link";
 
 export default function Home() {
   const { data: coffeeOptions, error, isLoading } = useGetCoffeeOptionsQuery();
-  const preferences = useSelector((state: any) => state.userOrder);
   const coffeeStyleDispatch = useDispatch();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
-
-  console.log({ preferences });
 
   return (
     <main>
@@ -38,8 +35,7 @@ export default function Home() {
             </Link>
           ))
         ) : (
-          // Improvements: proper loading should be handled by useGetCoffeeOptions hook which could return
-          // not only the data but also a loading state. Setting here as paragraph for the sake of time.
+          // Improvements: if loading (from api), return a spinner instead of text
           <p>Loading...</p>
         )}
       </PageLayout>

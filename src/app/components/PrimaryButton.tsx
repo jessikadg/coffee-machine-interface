@@ -77,6 +77,10 @@ export const handleExtraSelection = (
       break;
 
     default:
+      // Here set a default for sugar and milk if the selected option
+      // contains it as an extra. Currently if the user doesn't select it,
+      // the overview page won't display it.
+
       break;
   }
 };
