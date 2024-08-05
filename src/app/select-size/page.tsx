@@ -30,7 +30,7 @@ export default function SelectSizePage() {
       backButtonText="Brew with Lex"
       isInitialPage
     >
-      {selectedCoffee ? (
+      {selectedCoffee &&
         selectedCoffee.sizes.map((size) => (
           <Link
             href="/select-extras"
@@ -45,10 +45,7 @@ export default function SelectSizePage() {
               {size.name}
             </PrimaryButton>
           </Link>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
+        ))}
     </PageLayout>
   );
 }

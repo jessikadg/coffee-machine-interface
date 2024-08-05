@@ -1,5 +1,5 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { PageLayout } from "../components/PageLayout";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { useGetCoffeeOptionsQuery } from "@/api/coffeeApi";
@@ -20,7 +20,7 @@ export default function Home() {
         backButtonText="Brew with Lex"
         isInitialPage
       >
-        {coffeeOptions ? (
+        {coffeeOptions &&
           coffeeOptions.map((coffeeOption) => (
             <Link href="/select-size" key={coffeeOption._id}>
               <PrimaryButton
@@ -33,11 +33,7 @@ export default function Home() {
                 {coffeeOption.name}
               </PrimaryButton>
             </Link>
-          ))
-        ) : (
-          // Improvements: if loading (from api), return a spinner instead of text
-          <p>Loading...</p>
-        )}
+          ))}
       </PageLayout>
     </main>
   );

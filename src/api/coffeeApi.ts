@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { CoffeeOptionsDataType } from "@/app/types/data";
 import { CoffeeOptionsType } from "@/app/types/coffeeOptions";
-import { organizeData } from "../app/lib/utils/organiseData"; // assuming organizeData is in a utils folder
+import { organizeData } from "../app/lib/utils/organiseData";
 
 export const coffeeApi = createApi({
   reducerPath: "coffeeApi",

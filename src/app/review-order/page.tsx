@@ -1,13 +1,9 @@
 "use client";
 import { useGetCoffeeOptionsQuery } from "@/api/coffeeApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { PageLayout } from "../components/PageLayout";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { setSize } from "../lib/features/order";
 import Link from "next/link";
-import { get } from "http";
-import { useEffect, useState } from "react";
-import router from "next/router";
 import ReviewOrderButton from "../components/ReviewOrderButton";
 
 // For the purposes of this assignment, I'm creating this silly function just to be able to send the right string
@@ -25,7 +21,7 @@ export const getExtraItemName = (extraText: string) => {
 };
 
 export default function SelectExtrasPage() {
-  const { data: coffeeOptions, error, isLoading } = useGetCoffeeOptionsQuery();
+  const { error, isLoading } = useGetCoffeeOptionsQuery();
   const userOrder = useSelector((state: any) => state.userOrder);
 
   if (isLoading) return <p>Loading...</p>;
@@ -37,11 +33,11 @@ export default function SelectExtrasPage() {
 
   return (
     <PageLayout
-      pageTitle="Select your size"
+      pageTitle="Review your order"
       backButtonText="Brew with Lex"
       isInitialPage
     >
-      {userOrder ? (
+      {userOrder && (
         <>
           <PrimaryButton itemName={userOrder.coffeeStyle}>
             {userOrder.coffeeStyle}
@@ -59,8 +55,6 @@ export default function SelectExtrasPage() {
             <ReviewOrderButton />
           </Link>
         </>
-      ) : (
-        <p>Loading...</p>
       )}
     </PageLayout>
   );
