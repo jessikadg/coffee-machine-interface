@@ -1,4 +1,6 @@
 # Coffee Machine Interface
+<img width="454" alt="Screenshot 2024-08-05 at 12 37 10" src="https://github.com/user-attachments/assets/38fd31db-a6f2-47c1-aab2-a1374f889fac">
+
 
 This project was done asn an assignment to display coding skills. It uses:
 - Typescript
@@ -31,6 +33,7 @@ Here is what I did not have time to finish / areas for improvement:<br/>
 📈 Folder structure could be improved - maybe set up a folder like "pages" where we could put all pages in and connect the Next Router there instead of the top level on "app"<br/>
 📈 Extract all types from components to the types folder<br/>
 📈 Add Redux-Persist in case user refreshes the page they won't use the order<br/>
+📈 Add clickable Link to "Back" text on top of screens<br/>
 📈 If we wanted to make this app air-tight and fail-proof, we would still need to do a few things:<br/>
   - Create a 404 / Something went wrong page<br/>
   - Create a "no connection" page<br/>
