@@ -51,13 +51,11 @@ Here is what I did not have time to finish / areas for improvement:<br/>
 Clone the repo locally and run the development server:
 
 ```bash
-npm run dev
-# or
+# install dependencies with yarn by running
+yarn
+
+# and to see the project locally
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
